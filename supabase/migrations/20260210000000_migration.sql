@@ -700,7 +700,7 @@ CREATE INDEX IF NOT EXISTS "idx_updates_update_type" ON "public"."updates" USING
 -- =====================================================
 
 -- Activity status foreign keys
-ALTER TABLE "public"."activityStatus" ADD FOREIGN KEY ("assignedTo") REFERENCES "public"."users"("id");
+ALTER TABLE "public"."activityStatus" ADD FOREIGN KEY ("AssignedTo") REFERENCES "public"."users"("id");
 ALTER TABLE "public"."activityStatus" ADD FOREIGN KEY ("completedBy") REFERENCES "public"."users"("id");
 ALTER TABLE "public"."activityStatus" ADD FOREIGN KEY ("containerID") REFERENCES "public"."containers"("id");
 ALTER TABLE "public"."activityStatus" ADD FOREIGN KEY ("purchaseID") REFERENCES "public"."purchase"("id");
