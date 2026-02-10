@@ -860,4 +860,4 @@ ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TAB
 ALTER PUBLICATION "supabase_realtime" OWNER TO "postgres";
 
 -- Drop pg_net extension if exists (from remote_schema)
-DROP EXTENSION IF EXISTS "pg_net"
+DROP EXTENSION IF EXISTS "pg_net";
