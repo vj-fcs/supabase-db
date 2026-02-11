@@ -668,8 +668,7 @@ CONSTRAINT "updates_reference_check" CHECK (
 
 ALTER TABLE "public"."updates" OWNER TO "postgres";
 
-ALTER TABLE "public"."updates"
-ADD COLUMN "isHuman" boolean DEFAULT false;
+-- Duplicate column addition removed: "isHuman" is already created in the CREATE TABLE above.
 
 
 -- Add unique constraints for name fields
@@ -690,14 +689,15 @@ CREATE INDEX IF NOT EXISTS "idx_activityStatus_purchase_id" ON "public"."activit
 CREATE INDEX IF NOT EXISTS "idx_activityStatus_sales_id" ON "public"."activityStatus" USING btree ("salesID");
 
 -- Updates indexes
--- Use snake_case column names for compatibility with the remote schema migration
-CREATE INDEX IF NOT EXISTS "idx_updates_activity_status_id" ON "public"."updates" USING btree ("activity_status_id");
-CREATE INDEX IF NOT EXISTS "idx_updates_container_id" ON "public"."updates" USING btree ("container_id");
-CREATE INDEX IF NOT EXISTS "idx_updates_created_at" ON "public"."updates" USING btree ("created_at" DESC);
-CREATE INDEX IF NOT EXISTS "idx_updates_created_by" ON "public"."updates" USING btree ("created_by");
-CREATE INDEX IF NOT EXISTS "idx_updates_purchase_id" ON "public"."updates" USING btree ("purchase_id");
-CREATE INDEX IF NOT EXISTS "idx_updates_sales_id" ON "public"."updates" USING btree ("sales_id");
-CREATE INDEX IF NOT EXISTS "idx_updates_update_type" ON "public"."updates" USING btree ("update_type");
+-- Updates indexes
+-- Use camelCase column names to match the CREATE TABLE definition
+CREATE INDEX IF NOT EXISTS "idx_updates_activityStatusID" ON "public"."updates" USING btree ("activityStatusID");
+CREATE INDEX IF NOT EXISTS "idx_updates_containerID" ON "public"."updates" USING btree ("containerID");
+CREATE INDEX IF NOT EXISTS "idx_updates_createdAt" ON "public"."updates" USING btree ("createdAt" DESC);
+CREATE INDEX IF NOT EXISTS "idx_updates_createdBy" ON "public"."updates" USING btree ("createdBy");
+CREATE INDEX IF NOT EXISTS "idx_updates_purchaseID" ON "public"."updates" USING btree ("purchaseID");
+CREATE INDEX IF NOT EXISTS "idx_updates_salesID" ON "public"."updates" USING btree ("salesID");
+CREATE INDEX IF NOT EXISTS "idx_updates_updateType" ON "public"."updates" USING btree ("updateType");
 
 -- =====================================================
 -- FOREIGN KEY CONSTRAINTS
